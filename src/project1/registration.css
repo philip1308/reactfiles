@@ -1,0 +1,62 @@
+.sign-up
+{
+    background-color: #5656568e;
+   padding: 20px;
+   width: 50%;
+   margin: auto;
+   margin-top: 50px;
+   display: flex;
+   justify-content: center;
+   flex-direction: column;
+   align-items: center;
+   border-radius: 8px;
+}
+.sign-up h1
+{
+    color: #fafafa;
+}
+.sign-up button
+{
+    padding: 10px;
+    background-color: rgb(116, 108, 107);
+    color: #fafafa;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    width: 40%;
+    }
+
+.sign-up button:hover{
+    background-color: black;
+}
+.sign-up button a
+{
+    text-decoration: none;
+    color: #fafafa;
+
+}
+.sign-up input
+{
+    margin: 10px 0;
+    width: 50%;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    border-bottom: 1px solid #fff;
+    color: #fff;
+}
+.sign-up input::placeholder
+{
+    color: #a8a8a8;
+}
+.sign-up-bg
+{
+    background-image: url(https://www.pam-cloud.com/images/headers/login_309163937.jpg);
+   height: 170vh;
+   display: flex;
+   align-items: center;
+}
+.sign-up small
+{
+    color: rgb(104, 220, 9);
+}

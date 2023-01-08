@@ -1,0 +1,79 @@
+.align
+{
+   background-image: url(https://wallpapercave.com/wp/wp2154269.jpg);
+   height: 100vh;
+   display: flex;
+   align-items: center;
+}
+.login
+{
+   background-color: #5656568e;
+   padding: 20px;
+   width: 50%;
+   margin: auto;
+   margin-top: 50px;
+   display: flex;
+   justify-content: center;
+   flex-direction: column;
+   align-items: center;
+   border-radius: 8px;
+}
+.login h1
+{
+    color: #fafafa;
+}
+.login input
+{
+    margin: 10px 0;
+    width: 50%;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    border-bottom: 1px solid #fff;
+    color: #fff;
+}
+.login input::placeholder
+{
+    color: #fafafa;
+}
+.login button
+{
+    padding: 10px;
+    background-color: rgb(15, 14, 13);
+    color: #fafafa;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    width: 60%;
+}
+.login button:hover
+{
+    background-color: rgb(224, 250, 27);
+}
+.login button:active
+{
+    background-color: rgb(209, 250, 45);
+}
+.login button a
+{
+    text-decoration: none;
+    color: #fafafa;
+}
+.login-btn
+{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-evenly;
+    gap: 10px;
+}
+.login-btn p
+{
+    color: #fafafa;
+    padding-right: 20px;
+}
+.login-btn p span a
+{
+    color: rgb(131, 131, 238);
+    text-decoration: underline;
+    cursor: pointer;
+}
