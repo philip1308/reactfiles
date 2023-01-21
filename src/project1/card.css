@@ -1,0 +1,12 @@
+.card-sep
+{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-around;
+}
+
+.card-sep button a{
+    text-decoration: none;
+    color: white;
+}

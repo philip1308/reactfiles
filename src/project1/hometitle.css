@@ -1,0 +1,8 @@
+.nav-but a{
+    text-decoration: none;
+    color: white;
+}
+
+.nav-but a:hover{
+    color: blue;
+}

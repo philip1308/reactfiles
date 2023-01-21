@@ -1,0 +1,38 @@
+.profile-btn span{
+color: white;
+}
+
+.profile-btn span:hover{
+    color: blue;
+}
+.profile-address{
+    display: flex;
+    justify-content:left;
+    gap: 10px;
+}
+.profile-address span{
+    color: blue;
+    cursor: pointer;
+}
+.profile-add{
+    margin-top: 10px;
+    background-color:#555555;
+    padding: 10px;
+    color: white;
+}
+
+.profile-crudbtn{
+    display: flex;
+    justify-content: space-around;
+    
+}
+.profile-btn button
+{
+    margin-top: 10px;
+    width: 100% !important;
+}
+.profile-btn button a
+{
+    text-decoration: none;
+    color: #fafafa;
+}

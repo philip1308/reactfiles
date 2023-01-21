@@ -1,0 +1,17 @@
+.cart-sep
+{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.main-card-sep
+{
+    display: flex;
+    justify-content: space-around;
+}
+.filter
+{
+    background-color: rgb(164, 164, 169);
+    width: 80%;
+    overflow-y: hidden;
+}

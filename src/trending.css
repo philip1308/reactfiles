@@ -1,0 +1,20 @@
+.trending-sep
+{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 10px;
+}
+.heading
+{
+    background-color: #000000;
+    padding: 10px;
+    color: #fafafa;
+    margin-top: 10px;
+}
+.trending-btn a
+{
+    text-decoration: none;
+    color: #fafafa;
+}

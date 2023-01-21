@@ -1,14 +1,10 @@
 import React, { useState } from "react";
-
-import { Link } from "react-router-dom";
-import Example from "./module";
+import { BrowserRouter as Router, Switch, Route, Link,useHistory } from 'react-router-dom'
 import { useEffect } from "react";
-import './registration.css'
-function Reg (){
-const[success,setSuccess] = useState("")
-const clicktologin=()=>{
-setSuccess("created successfully")
-}
+import './registration.css';
+
+function Reg(){
+
 const [error, setError] = useState({
     nameErr: '',
     emailErr: '',
@@ -23,15 +19,8 @@ const [form, setForm] = useState({
     password: '',
     re_password: ''
 })
-const [existUser,setExistUser] = useState([
-{
-    name: 'philip',
-    email: 'email',
-    phone: '9344802084',
-    password: 'philip',
-    re_password: 'philip'
-}
-])
+const [existUser,setExistUser] = useState({})
+
 function checkHandeler(e) {
 
 
@@ -39,79 +28,73 @@ function checkHandeler(e) {
     obj[e.target.name] = e.target.value
     setForm({ ...form, ...obj })
     
-    let obj_1 = {}
+   
+}
+const history = useHistory()
+function userletin(){
 
-    for (let key in form) {
 
-        if (form[key].trim().length === 0) {
+let obj_1 = {}
 
-            obj_1[key + "Err"] = "Mandatory"
+for (let key in form) {
 
-        }
-        else if (key === "email") {
+    if (form[key].trim().length === 0) {
 
-            let mail = /^([A-Za-z0-9_\.\-]+)@([A-Za-z]+).([a-zA-Z]{3})$/
+        obj_1[key + "Err"] = "Mandatory"
 
-            if (mail.test(form[key])) {
+    }
+    else if (key === "email") {
 
-                obj_1[key + "Err"] = ""
+        let mail = /^([A-Za-z0-9_\.\-]+)@([A-Za-z]+).([a-zA-Z]{3})$/
 
-            }
-            else {
-
-                obj_1[key + "Err"] = "invalid email"
-
-            }
-
-        }
-        else if (key === "password") {
-
-            let pass = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&])[\w!@#$%^&]{8,100}$/
-
-            if (pass.test(form[key])) {
-
-                obj_1[key + "Err"] = ""
-
-            }
-            else {
-
-                obj_1[key + "Err"] = "Weak password"
-
-            }
-
-        }
-        else if (key === "phone") {
-
-            if (form[key].trim().length === 10) {
-                
-                obj_1[key + "Err"] = ""
-
-            }
-            else {
-
-                obj_1[key + "Err"] = "Invalid phone number"
-
-            }
-
-        }
-        else {
+        if (mail.test(form[key])) {
 
             obj_1[key + "Err"] = ""
 
         }
+        else {
+
+            obj_1[key + "Err"] = "invalid email"
+
+        }
+
     }
+    else if (key === "phone") {
+
+        if (form[key].trim().length === 10) {
+            
+            obj_1[key + "Err"] = ""
+
+        }
+        else {
+
+            obj_1[key + "Err"] = "Invalid phone number"
+
+        }
+
+    }
+    else {
+
+        obj_1[key + "Err"] = ""
+
+    }
+}
+
+if(Object.values(obj_1).filter((val)=>Boolean(val)).length==0){
+    history.push("/")
+sessionStorage.setItem("user",JSON.stringify(form))
+}
+else
+{
     setError(obj_1)
 }
-useEffect(()=>{
-existUser.push(form)
 }
-,[form])
+
 
     return(
 <>
 <div className='sign-up-bg'>
                 <div className='sign-up'>
-<h1>{success}</h1>
 <h1>username <input type = "text" name="name" placeholder="enter username" onChange={checkHandeler}/></h1>
 <br></br>
 <small>{error.nameErr}</small>
@@ -128,9 +111,9 @@ existUser.push(form)
 <br></br>
 <small>{error.re_passwordErr}</small>
 <br></br>
-<button ><Link to ='/'>create Account</Link></button>
+<button onClick={userletin}>submit</button>
 <br></br>
-<Example/>
+
 </div>
 </div>
 </>

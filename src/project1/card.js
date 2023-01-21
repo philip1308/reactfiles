@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import Title from "./hometitle";
-import './singleproduct.css'
-import { Addtocart } from "../addtocartlogics";
-import { useDispatch } from "react-redux";
-import Footer from "../footer";
+import { useEffect, useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import { Link, useLocation } from 'react-router-dom';
+import Title from './hometitle';
+import  search  from '../addtocartlogics';
+import { useSelector } from 'react-redux';
+import './card.css'
+import Footer from '../footer';
 
-
-function Singleitem(){
-    
+function BasicExample() {
     const [data, setData] = [
         {
             mens: [
@@ -20,7 +20,7 @@ function Singleitem(){
                     title: "Men's Plain Shiny Solid Full Sleeves Regular Fit Formal Shirts",
                     brand: "gucii",
                     color: "black",
-                    description: "Although dress codes are designed to provide guidance on what to wear, they can often make choosing an outfit more complex. With all their rules and requirements, navigating your way through each form of attire can be incredibly challenging",
+                    type: "mens"
                 }
                 ,
                 {
@@ -29,9 +29,9 @@ function Singleitem(){
                     Price: 499,
                     img: "https://imagescdn.louisphilippe.com/img/app/product/7/710038-7748329.jpg?auto=format",
                     title: "Men's Cotton Slim Fit Casual Shirt (C615)",
-                    brand: "peter england",
+                    brand: "allen solly",
                     color: "blue",
-                    description: "Although dress codes are designed to provide guidance on what to wear, they can often make choosing an outfit more complex. With all their rules and requirements, navigating your way through each form of attire can be incredibly challenging",
+                    type: "mens"
                 }
                 ,
                 {
@@ -42,7 +42,7 @@ function Singleitem(){
                     title: "Men Casual Shirt",
                     brand: "gucii",
                     color: "grey",
-                    description: "Although dress codes are designed to provide guidance on what to wear, they can often make choosing an outfit more complex. With all their rules and requirements, navigating your way through each form of attire can be incredibly challenging",
+                    type: "mens"
                 }
                 ,
                 {
@@ -53,7 +53,7 @@ function Singleitem(){
                     title: "Men's Cotton Casual Regular Fit Shirt for Men Full Sleeves",
                     brand: "indoprimo",
                     color: "blue",
-                    description: "Although dress codes are designed to provide guidance on what to wear, they can often make choosing an outfit more complex. With all their rules and requirements, navigating your way through each form of attire can be incredibly challenging",
+                    type: "mens"
                 }
                 ,
                 {
@@ -64,7 +64,7 @@ function Singleitem(){
                     title: "Men's Solid Slim Fit Cotton Casual Shirt with Spread Collar & Full",
                     brand: "dennis",
                     color: "blue",
-                    description: "Although dress codes are designed to provide guidance on what to wear, they can often make choosing an outfit more complex. With all their rules and requirements, navigating your way through each form of attire can be incredibly challenging",
+                    type: "mens"
                 }
                 ,
                 {
@@ -75,7 +75,7 @@ function Singleitem(){
                     title: "Men's Slim Fit Casual Shirt",
                     brand: "dennis",
                     color: "white",
-                    description: "Although dress codes are designed to provide guidance on what to wear, they can often make choosing an outfit more complex. With all their rules and requirements, navigating your way through each form of attire can be incredibly challenging",
+                    type: "mens"
                 }
                 ,
                 {
@@ -86,7 +86,7 @@ function Singleitem(){
                     title: "Men's Slim Fit Casual Shirt",
                     brand: "indoprimo",
                     color: "white",
-                    description: "Although dress codes are designed to provide guidance on what to wear, they can often make choosing an outfit more complex. With all their rules and requirements, navigating your way through each form of attire can be incredibly challenging",
+                    type: "mens"
                 }
                 ,
                 {
@@ -97,7 +97,7 @@ function Singleitem(){
                     title: "Men's Regular Fit Casual Shirt",
                     brand: "indoprimo",
                     color: "blue",
-                    description: "Although dress codes are designed to provide guidance on what to wear, they can often make choosing an outfit more complex. With all their rules and requirements, navigating your way through each form of attire can be incredibly challenging",
+                    type: "mens"
                 }
                 ,
                 {
@@ -108,7 +108,7 @@ function Singleitem(){
                     title: "Men's Casual Shirt",
                     brand: "indoprimo",
                     color: "green",
-                    description: "Although dress codes are designed to provide guidance on what to wear, they can often make choosing an outfit more complex. With all their rules and requirements, navigating your way through each form of attire can be incredibly challenging",
+                    type: "mens"
                 }
                 ,
                 {
@@ -117,9 +117,9 @@ function Singleitem(){
                     Price: 489,
                     img: "https://images-do.nyc3.cdn.digitaloceanspaces.com/lAVtCJXFVr/product_images/1671863599.WhatsApp_Image_2022-12-24_at_11.37.01_AM.jpeg",
                     title: "Men's Regular Fit formal Shirt",
-                    brand: "Allen solley",
+                    brand: "allen solly",
                     color: "white",
-                    description: "Although dress codes are designed to provide guidance on what to wear, they can often make choosing an outfit more complex. With all their rules and requirements, navigating your way through each form of attire can be incredibly challenging",
+                    type: "mens"
                 }
                 ,
                 {
@@ -130,7 +130,7 @@ function Singleitem(){
                     title: "Men's Regular Fit formal Shirt",
                     brand: "indoprimo",
                     color: "blue",
-                    description: "Although dress codes are designed to provide guidance on what to wear, they can often make choosing an outfit more complex. With all their rules and requirements, navigating your way through each form of attire can be incredibly challenging",
+                    type: "mens"
                 }
                 ,
                 {
@@ -141,7 +141,7 @@ function Singleitem(){
                     title: "Men's Regular Fit formal Shirt",
                     brand: "Allen solley",
                     color: "red",
-                    description: "Although dress codes are designed to provide guidance on what to wear, they can often make choosing an outfit more complex. With all their rules and requirements, navigating your way through each form of attire can be incredibly challenging",
+                    type: "mens"
                 }
             ]
             ,
@@ -154,7 +154,7 @@ function Singleitem(){
                     title: "Muse women classic women’s dress black fit and off shoulder",
                     brand: "BIBA",
                     color: "blue",
-                    description: "A dress (also known as a frock or a gown) is a garment traditionally worn by women or girls consisting of a skirt with an attached bodice (or a matching bodice giving the effect of a one-piece garment",
+                    type: "womens"
                 }
                 ,
                 {
@@ -165,7 +165,7 @@ function Singleitem(){
                     title: "Women's Shirt Maxi Dress",
                     brand: "BIBA",
                     color: "grey",
-                    description: "A dress (also known as a frock or a gown) is a garment traditionally worn by women or girls consisting of a skirt with an attached bodice (or a matching bodice giving the effect of a one-piece garment",
+                    type: "womens"
                 }
                 ,
                 {
@@ -176,7 +176,7 @@ function Singleitem(){
                     title: "Women's Cotton Off White Zari Embellished A-Line Dress",
                     brand: "BIBA",
                     color: "blue",
-                    description: "A dress (also known as a frock or a gown) is a garment traditionally worn by women or girls consisting of a skirt with an attached bodice (or a matching bodice giving the effect of a one-piece garment",
+                    type: "womens"
                 }
                 ,
                 {
@@ -187,7 +187,7 @@ function Singleitem(){
                     title: "Women's Black & Rust Orange Floral Print Tiered Midi Fit & Flare",
                     brand: "BIBA",
                     color: "white",
-                    description: "A dress (also known as a frock or a gown) is a garment traditionally worn by women or girls consisting of a skirt with an attached bodice (or a matching bodice giving the effect of a one-piece garment",
+                    type: "womens"
                 }
                 ,
                 {
@@ -198,7 +198,7 @@ function Singleitem(){
                     title: "Women's Georgette Digital Floral Printed Gown Dress for Women",
                     brand: "ONLY",
                     color: "pink",
-                    description: "A dress (also known as a frock or a gown) is a garment traditionally worn by women or girls consisting of a skirt with an attached bodice (or a matching bodice giving the effect of a one-piece garment",
+                    type: "womens"
                 }
                 ,
                 {
@@ -209,7 +209,7 @@ function Singleitem(){
                     title: "Women's Kaftan Midi Dress (Printed Chiffon Kaftan with Waist",
                     brand: "ONLY",
                     color: "blue",
-                    description: "A dress (also known as a frock or a gown) is a garment traditionally worn by women or girls consisting of a skirt with an attached bodice (or a matching bodice giving the effect of a one-piece garment",
+                    type: "womens"
                 }
                 ,
                 {
@@ -220,7 +220,7 @@ function Singleitem(){
                     title: "Women Casual Dress",
                     brand: "ONLY",
                     color: "yellow",
-                    description: "A dress (also known as a frock or a gown) is a garment traditionally worn by women or girls consisting of a skirt with an attached bodice (or a matching bodice giving the effect of a one-piece garment",
+                    type: "womens"
                 }
                 ,
                 {
@@ -231,7 +231,7 @@ function Singleitem(){
                     title: "Women's Polyester A-Line Knee-Length Dress",
                     brand: "ONLY",
                     color: "blue",
-                    description: "A dress (also known as a frock or a gown) is a garment traditionally worn by women or girls consisting of a skirt with an attached bodice (or a matching bodice giving the effect of a one-piece garment",
+                    type: "womens"
                 }
                 ,
                 {
@@ -242,7 +242,7 @@ function Singleitem(){
                     title: "Women Rayon Casual Wear Western Maxi Dress Gown for",
                     brand: "ZARA",
                     color: "yellow",
-                    description: "A dress (also known as a frock or a gown) is a garment traditionally worn by women or girls consisting of a skirt with an attached bodice (or a matching bodice giving the effect of a one-piece garment",
+                    type: "womens"
                 }
                 ,
                 {
@@ -253,7 +253,7 @@ function Singleitem(){
                     title: "Western Dresses for Women | A-Line Knee-Length Dress | Midi",
                     brand: "ZARA",
                     color: "blue",
-                    description: "A dress (also known as a frock or a gown) is a garment traditionally worn by women or girls consisting of a skirt with an attached bodice (or a matching bodice giving the effect of a one-piece garment",
+                    type: "womens"
                 }
                 ,
                 {
@@ -264,7 +264,7 @@ function Singleitem(){
                     title: "Women's Polyester A-Line Knee-Length Dress",
                     brand: "ZARA",
                     color: "blue",
-                    description: "A dress (also known as a frock or a gown) is a garment traditionally worn by women or girls consisting of a skirt with an attached bodice (or a matching bodice giving the effect of a one-piece garment",
+                    type: "womens"
                 }
                 ,
                 {
@@ -275,7 +275,7 @@ function Singleitem(){
                     title: "Women Rayon Casual Wear Western Maxi Dress Gown for",
                     brand: "ZARA",
                     color: "white",
-                    description: "A dress (also known as a frock or a gown) is a garment traditionally worn by women or girls consisting of a skirt with an attached bodice (or a matching bodice giving the effect of a one-piece garment",
+                    type: "womens"
                 }
             ]
             ,
@@ -288,7 +288,7 @@ function Singleitem(){
                     title: "Muse women classic women’s dress black fit and off shoulder",
                     brand: "Max",
                     color: "green",
-                    description: "Children, toddlers and babies wear should be functional (easy to put on), cute (colors), gentle and smooth (quality of fabrics), easy to maintain (care label, dimensional stability, etc), and have a good ratio of price to quality",
+                    type: "kids"
                 }
                 ,
                 {
@@ -299,7 +299,7 @@ function Singleitem(){
                     title: "Women's Shirt Maxi Dress",
                     brand: "Max",
                     color: "white",
-                    description: "Children, toddlers and babies wear should be functional (easy to put on), cute (colors), gentle and smooth (quality of fabrics), easy to maintain (care label, dimensional stability, etc), and have a good ratio of price to quality",
+                    type: "kids"
                 }
                 ,
                 {
@@ -310,7 +310,7 @@ function Singleitem(){
                     title: "Women's Cotton Off White Zari Embellished A-Line Dress",
                     brand: "Max",
                     color: "blue",
-                    description: "Children, toddlers and babies wear should be functional (easy to put on), cute (colors), gentle and smooth (quality of fabrics), easy to maintain (care label, dimensional stability, etc), and have a good ratio of price to quality",
+                    type: "kids"
                 }
                 ,
                 {
@@ -321,7 +321,7 @@ function Singleitem(){
                     title: "Women's Black & Rust Orange Floral Print Tiered Midi Fit & Flare",
                     brand: "Max",
                     color: "blue",
-                    description: "Children, toddlers and babies wear should be functional (easy to put on), cute (colors), gentle and smooth (quality of fabrics), easy to maintain (care label, dimensional stability, etc), and have a good ratio of price to quality",
+                    type: "kids"
                 }
                 ,
                 {
@@ -332,7 +332,7 @@ function Singleitem(){
                     title: "Women's Georgette Digital Floral Printed Gown Dress for Women",
                     brand: "Lilliput",
                     color: "blue",
-                    description: "Children, toddlers and babies wear should be functional (easy to put on), cute (colors), gentle and smooth (quality of fabrics), easy to maintain (care label, dimensional stability, etc), and have a good ratio of price to quality",
+                    type: "kids"
                 }
                 ,
                 {
@@ -343,7 +343,7 @@ function Singleitem(){
                     title: "Women's Kaftan Midi Dress (Printed Chiffon Kaftan with Waist",
                     brand: "Lilliput",
                     color: "red",
-                    description: "Children, toddlers and babies wear should be functional (easy to put on), cute (colors), gentle and smooth (quality of fabrics), easy to maintain (care label, dimensional stability, etc), and have a good ratio of price to quality",
+                    type: "kids"
                 }
                 ,
                 {
@@ -354,7 +354,7 @@ function Singleitem(){
                     title: "Women Casual Dress",
                     brand: "Lilliput",
                     color: "black",
-                    description: "Children, toddlers and babies wear should be functional (easy to put on), cute (colors), gentle and smooth (quality of fabrics), easy to maintain (care label, dimensional stability, etc), and have a good ratio of price to quality",
+                    type: "kids"
                 }
                 ,
                 {
@@ -365,7 +365,7 @@ function Singleitem(){
                     title: "Women's Polyester A-Line Knee-Length Dress",
                     brand: "Lilliput",
                     color: "black",
-                    description: "Children, toddlers and babies wear should be functional (easy to put on), cute (colors), gentle and smooth (quality of fabrics), easy to maintain (care label, dimensional stability, etc), and have a good ratio of price to quality",
+                    type: "kids"
                 }
                 ,
                 {
@@ -376,7 +376,7 @@ function Singleitem(){
                     title: "Women Rayon Casual Wear Western Maxi Dress Gown for",
                     brand: "Babyhug",
                     color: "black",
-                    description: "Children, toddlers and babies wear should be functional (easy to put on), cute (colors), gentle and smooth (quality of fabrics), easy to maintain (care label, dimensional stability, etc), and have a good ratio of price to quality",
+                    type: "kids"
                 }
                 ,
                 {
@@ -387,7 +387,7 @@ function Singleitem(){
                     title: "Western Dresses for Women | A-Line Knee-Length Dress | Midi",
                     brand: "Babyhug",
                     color: "green",
-                    description: "Children, toddlers and babies wear should be functional (easy to put on), cute (colors), gentle and smooth (quality of fabrics), easy to maintain (care label, dimensional stability, etc), and have a good ratio of price to quality",
+                    type: "kids"
                 }
                 ,
                 {
@@ -398,7 +398,7 @@ function Singleitem(){
                     title: "Women Rayon Casual Wear Western Maxi Dress Gown for",
                     brand: "Babyhug",
                     color: "white",
-                    description: "Children, toddlers and babies wear should be functional (easy to put on), cute (colors), gentle and smooth (quality of fabrics), easy to maintain (care label, dimensional stability, etc), and have a good ratio of price to quality",
+                    type: "kids"
                 }
                 ,
                 {
@@ -409,7 +409,7 @@ function Singleitem(){
                     title: "Western Dresses for Women | A-Line Knee-Length Dress | Midi",
                     brand: "Babyhug",
                     color: "green",
-                    description: "Children, toddlers and babies wear should be functional (easy to put on), cute (colors), gentle and smooth (quality of fabrics), easy to maintain (care label, dimensional stability, etc), and have a good ratio of price to quality",
+                    type: "kids"
                 }
             ]
             ,
@@ -422,47 +422,12 @@ function Singleitem(){
                     title: "4GB RAM, 128GB Storage | Upto 8GB RAM with RAM Plus | MediaTek Helio P35 | 5000 mAh Battery",
                     brand: "Samsung",
                     color: "black",
-                    type: "mobile",
-                    description: "Electronics is a branch of Physics that deals with the theory and use of devices in which the electrons travel through a vacuum, gas, or a semiconductor medium",
+                    type: "mobile"
                 }
-                ,
-                {
-                    id: 2,
-                    productName: "samsung galaxy Z fold",
-                    Price: 110499,
-                    img: "https://i0.wp.com/shopfabcart.com/wp-content/uploads/2022/09/714QNdK8BWL._SX679.jpg?fit=679%2C679&ssl=1",
-                    title: "Glass Orange, 4GB RAM, 64GB Storage| 50 MP AI Triple Camera| 2.3 Ghz Octa Core MTK Helio G37 |Side Fingerprint Sensor| Upto 7GB Expandable RAM",
-                    brand: "samsung",
-                    color: "silver",
-                    type: "mobile",
-                    description: "Electronics is a branch of Physics that deals with the theory and use of devices in which the electrons travel through a vacuum, gas, or a semiconductor medium",
-                }
-                ,
-                {
-                    id: 3,
-                    productName: "jio phone",
-                    Price: 8499,
-                    img: "https://i0.wp.com/shopfabcart.com/wp-content/uploads/2022/09/61qacJf-mbL._SX679.jpg?fit=679%2C679&ssl=1",
-                    title: "Carbon Black, 4GB RAM, 64GB Storage | Octa-core Helio G35 | 5000 mAh Battery",
-                    brand: "jio",
-                    color: "blue",
-                    type: "mobile",
-                    description: "Electronics is a branch of Physics that deals with the theory and use of devices in which the electrons travel through a vacuum, gas, or a semiconductor medium",
-
-                }
-                ,
-                {
-                    id: 4,
-                    productName: "iq00 Z6",
-                    Price: 16999,
-                    img: "https://i0.wp.com/shopfabcart.com/wp-content/uploads/2022/09/61ocdmx9Y0L._SY741__2_7ee54f83-9e8f-4401-9825-223ceac936fe.jpg?fit=564%2C741&ssl=1",
-                    title: "Matte Black, 6GB RAM, 128GB ROM| Dimensity 810 5G | 33W Pro Fast Charging | Charger Included | Additional Exchange Offers|Get 2 Months of YouTube Premium",
-                    brand: "iq00",
-                    color: "blue",
-                    type: "mobile",
-                    description: "Electronics is a branch of Physics that deals with the theory and use of devices in which the electrons travel through a vacuum, gas, or a semiconductor medium",
-
-                }
+                
+               
+    
+                
                 ,
                 {
                     id: 5,
@@ -472,9 +437,7 @@ function Singleitem(){
                     title: "Coral Green, 2GB RAM, 32GB Storage | 2GHz Octa-core Helio G25 Processor | 5000 mAh Battery",
                     brand: "Oppo",
                     color: "blue",
-                    type: "mobile",
-                    description: "Electronics is a branch of Physics that deals with the theory and use of devices in which the electrons travel through a vacuum, gas, or a semiconductor medium",
-
+                    type: "mobile"
                 }
                 ,
                 {
@@ -485,9 +448,7 @@ function Singleitem(){
                     title: "Light Blue, 2GB RAM, 32GB Storage | Segment Best AI Dual Cam | 5000mAh Battery | Leather Texture Design | Android 12",
                     brand: "Redmi",
                     color: "white",
-                    type: "mobile",
-                    description: "Electronics is a branch of Physics that deals with the theory and use of devices in which the electrons travel through a vacuum, gas, or a semiconductor medium",
-
+                    type: "mobile"
                 }
                 ,
                 {
@@ -498,8 +459,7 @@ function Singleitem(){
                     title: "Carbon Black, 2GB RAM+32GB Storage Octa Core Processor | 6.5| inch Large Display",
                     brand: "Azus",
                     color: "black",
-                    type: "mobile",
-                    description: "Electronics is a branch of Physics that deals with the theory and use of devices in which the electrons travel through a vacuum, gas, or a semiconductor medium",
+                    type: "mobile"
                 }
                 ,
                 {
@@ -510,8 +470,7 @@ function Singleitem(){
                     title: "Western Dresses for Women | A-Line Knee-Length Dress | Midi",
                     brand: "one plus",
                     color: "grey",
-                    type: "mobile",
-                    description: "Electronics is a branch of Physics that deals with the theory and use of devices in which the electrons travel through a vacuum, gas, or a semiconductor medium",
+                    type: "mobile"
                 }
                 ,
                 {
@@ -522,8 +481,7 @@ function Singleitem(){
                     title: "Aqua Green, 4GB, 64GB Storage | 6000mAh Battery | Upto 8GB RAM with RAM Plus",
                     brand: "iphone",
                     color: "green",
-                    type: "mobile",
-                    description: "Electronics is a branch of Physics that deals with the theory and use of devices in which the electrons travel through a vacuum, gas, or a semiconductor medium",
+                    type: "mobile"
                 }
                 ,
                 {
@@ -534,8 +492,7 @@ function Singleitem(){
                     title: "Black Dusk, 6GB RAM, 128GB Storage",
                     brand: "iphone",
                     color: "purple",
-                    type: "mobile",
-                    description: "Electronics is a branch of Physics that deals with the theory and use of devices in which the electrons travel through a vacuum, gas, or a semiconductor medium",
+                    type: "mobile"
                 }
                 ,
                 {
@@ -546,8 +503,7 @@ function Singleitem(){
                     title: "Aqua Green, 4GB, 64GB Storage | 6000mAh Battery | Upto 8GB RAM with RAM Plus",
                     brand: "iphone",
                     color: "blue",
-                    type: "mobile",
-                    description: "Electronics is a branch of Physics that deals with the theory and use of devices in which the electrons travel through a vacuum, gas, or a semiconductor medium",
+                    type: "mobile"
                 }
                 ,
                 {
@@ -558,8 +514,7 @@ function Singleitem(){
                     title: "Black Dusk, 6GB RAM, 128GB Storage",
                     brand: "iphone",
                     color: "red",
-                    type: "mobile",
-                    description: "Electronics is a branch of Physics that deals with the theory and use of devices in which the electrons travel through a vacuum, gas, or a semiconductor medium",
+                    type: "mobile"
                 }
                 ,
                 {
@@ -570,8 +525,7 @@ function Singleitem(){
                     title: " 12th Gen Intel Core i5-1235U 15.6 (39.62cm) FHD IPS Anti-Glare (16GB/512GB SDD/Windows 11/Office 2021/Backlit/1Yr Warranty/3months Game Pass/Stor",
                     brand: "asus",
                     color: "black",
-                    type: "laptop",
-                    description: "Electronics is a branch of Physics that deals with the theory and use of devices in which the electrons travel through a vacuum, gas, or a semiconductor medium",
+                    type: "laptop"
                 }
                 ,
                 {
@@ -582,8 +536,7 @@ function Singleitem(){
                     title: "(Renewed) Intel Core i5 6th Gen.6200u Processor 14.1 Inches HD Screen Notebook Computer (8 GB Ram & 256 GB SSD, Windows 10 Pro, 1.71Kg)",
                     brand: "Asus",
                     color: "black",
-                    type: "laptop",
-                    description: "Electronics is a branch of Physics that deals with the theory and use of devices in which the electrons travel through a vacuum, gas, or a semiconductor medium",
+                    type: "laptop"
                 }
                 ,
                 {
@@ -594,8 +547,7 @@ function Singleitem(){
                     title: ", 15.6-inch (39.62 cm) HD, Dual Core Intel Celeron N4020, Thin and Light Laptop (4GB RAM/256GB SSD/Integrated Graphics/Windows 11 Home/Transparent",
                     brand: "Mac",
                     color: "silver",
-                    type: "laptop",
-                    description: "Electronics is a branch of Physics that deals with the theory and use of devices in which the electrons travel through a vacuum, gas, or a semiconductor medium",
+                    type: "laptop"
                 }
                 ,
                 {
@@ -606,8 +558,7 @@ function Singleitem(){
                     title: " 15.6 (39.62 cm) HD 220 nits Antiglare Thin and Light Laptop (4GB RAM/256GB SSD/DOS/Iron Grey/1.85 kg), 82C3A008IH",
                     brand: "Asus",
                     color: "black",
-                    type: "laptop",
-                    description: "Electronics is a branch of Physics that deals with the theory and use of devices in which the electrons travel through a vacuum, gas, or a semiconductor medium",
+                    type: "laptop"
                 }
                 ,
                 {
@@ -618,8 +569,7 @@ function Singleitem(){
                     title: "AMD Athlon Silver 3050U 8GB RAM/512GB SSD 15.6-inches/39.6 cm HD, Micro-Edge Display/Windows 11/AMD Radeon Graphics/Dual Speakers/MSO/Fast Charge/1.69 Kg, 15s-",
                     brand: "Lenovo",
                     color: "silver",
-                    type: "laptop",
-                    description: "Electronics is a branch of Physics that deals with the theory and use of devices in which the electrons travel through a vacuum, gas, or a semiconductor medium",
+                    type: "laptop"
                 }
                 ,
                 {
@@ -630,8 +580,7 @@ function Singleitem(){
                     title: " Intel Celeron N4020 4th Gen 15.6 (39.62cm) HD Thin & Light Laptop (8GB/256GB SSD/Windows 11/Office 2021/2Yr Warranty/3months Game Pass/Platinum",
                     brand: "Lenovo",
                     color: "silver",
-                    type: "laptop",
-                    description: "Electronics is a branch of Physics that deals with the theory and use of devices in which the electrons travel through a vacuum, gas, or a semiconductor medium",
+                    type: "laptop"
                 }
                 ,
                 {
@@ -642,8 +591,7 @@ function Singleitem(){
                     title: "11Th Gen Intel Core I9/17.3 Inches 4K Uhd Display/64Gb Ddr4 Ram/2Tb Ssd/1Tb HDD/RTX 3080 Graphics/Windows 10 Home/Per Key",
                     brand: "dell",
                     color: "black",
-                    type: "laptop",
-                    description: "Electronics is a branch of Physics that deals with the theory and use of devices in which the electrons travel through a vacuum, gas, or a semiconductor medium",
+                    type: "laptop"
                 }
                 ,
                 {
@@ -654,8 +602,7 @@ function Singleitem(){
                     title: "11Th Gen Intel Core I9/17.3 Inches 4K Uhd Display/64Gb Ddr4 Ram/2Tb Ssd/1Tb HDD/RTX 3080 Graphics/Windows 10 Home/Per Key",
                     brand: "dell",
                     color: "black",
-                    type: "laptop",
-                    description: "Electronics is a branch of Physics that deals with the theory and use of devices in which the electrons travel through a vacuum, gas, or a semiconductor medium",
+                    type: "laptop"
                 }
                 ,
                 {
@@ -666,8 +613,7 @@ function Singleitem(){
                     title: " AMD Athlon Silver 3050U, Win11 + Office 21, 8GB GDDR4, 256GB SSD, Radeon Graphics, 15.6 (39.62Cms) HD AG, Black (D560766WIN9BE, 1.68Kgs)",
                     brand: "hp",
                     color: "silver",
-                    type: "laptop",
-                    description: "Electronics is a branch of Physics that deals with the theory and use of devices in which the electrons travel through a vacuum, gas, or a semiconductor medium",
+                    type: "laptop"
                 }
                 ,
                 {
@@ -678,8 +624,7 @@ function Singleitem(){
                     title: "4GB DDR4 RAM / 1TB HDD / Windows 11 Home/ Black /Narrow Bezel / 1.9 Kg A314-22 with 14 inches (35.5 cm) HD Display Laptop",
                     brand: "hp",
                     color: "silver",
-                    type: "laptop",
-                    description: "Electronics is a branch of Physics that deals with the theory and use of devices in which the electrons travel through a vacuum, gas, or a semiconductor medium",
+                    type: "laptop"
                 }
                 ,
                 {
@@ -690,8 +635,7 @@ function Singleitem(){
                     title: " AMD Athlon Silver 3050U, Win11 + Office 21, 8GB GDDR4, 256GB SSD, Radeon Graphics, 15.6 (39.62Cms) HD AG, Black (D560766WIN9BE, 1.68Kgs)",
                     brand: "mac",
                     color: "silver",
-                    type: "laptop",
-                    description: "Electronics is a branch of Physics that deals with the theory and use of devices in which the electrons travel through a vacuum, gas, or a semiconductor medium",
+                    type: "laptop"
                 }
                 ,
                 {
@@ -702,119 +646,198 @@ function Singleitem(){
                     title: "4GB DDR4 RAM / 1TB HDD / Windows 11 Home/ Black /Narrow Bezel / 1.9 Kg A314-22 with 14 inches (35.5 cm) HD Display Laptop",
                     brand: "mac",
                     color: "silver",
-                    type: "laptop",
-                    description: "Electronics is a branch of Physics that deals with the theory and use of devices in which the electrons travel through a vacuum, gas, or a semiconductor medium",
-                }
-            ]
-            ,
-            trendingProduct: [
-                
-                {
-                    id: 1,
-                    productName: "Fan",
-                    Price: 4080,
-                    img: "https://orpatgroup.com/wp-content/uploads/2022/06/AB-Brown-1-1.jpg",
-                    title: "Energy Efficient BLDC Motor 28 Wattage consumption Save Money up to 1750 Rs. In a year Remote with BOOST SLEEP TIMER MODE Fan with LED light",
-                    brand: "orpat",
-                    color: "brown",
-                    type: "fan",
-                    description: "Electronics is a branch of Physics that deals with the theory and use of devices in which the electrons travel through a vacuum, gas, or a semiconductor medium",
-                }
-                ,
-                {
-                    id: 2,
-                    productName: "table",
-                    Price: 22659,
-                    img: "https://cdn.shopify.com/s/files/1/3100/3170/products/custom_resized_2b294e9c-cbff-48e2-b577-4a13b8de03d3-2.png?v=1642257593&width=823",
-                    title: "Arabia Xl Storage Solid Wood 6 Seater Dining Table In Teak Finish",
-                    brand: "urban lader",
-                    color: "brown",
-                    type: "table",
-                    description: "Electronics is a branch of Physics that deals with the theory and use of devices in which the electrons travel through a vacuum, gas, or a semiconductor medium",
-                }
-                ,
-                {
-                    id: 3,
-                    productName: "chair",
-                    Price: 16999,
-                    img: "https://cdn.shopify.com/s/files/1/0635/6929/7637/products/Stylux_01.jpg?v=1660739710&width=1100",
-                    title: "Luxurious in form, engineered for comfort, and crafted with precision, Stylux SmartGRID Office Chair is a modern classic that’s made for you",
-                    brand: "stylus",
-                    color: "silver",
-                    type: "chair",
-                    description: "Electronics is a branch of Physics that deals with the theory and use of devices in which the electrons travel through a vacuum, gas, or a semiconductor medium",
-                }
-                ,
-                {
-                    id: 4,
-                    productName: "speaker",
-                    Price: 13990,
-                    img: "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1665443264/Croma%20Assets/Entertainment/Speakers%20and%20Media%20Players/Images/220804_0_o04sdx.png/mxw_1440,f_auto",
-                    title: "1400W Bluetooth Party Speaker with Mic (Dynamic Bass Boost with Recording Function, Black)",
-                    brand: "Croma",
-                    color: "black",
-                    type: "speaker",
-                    description: "Electronics is a branch of Physics that deals with the theory and use of devices in which the electrons travel through a vacuum, gas, or a semiconductor medium",
-                }
-                ,
-                {
-                    id: 5,
-                    productName: "Samsung",
-                    Price: 85490,
-                    img: "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1663970014/Croma%20Assets/Large%20Appliances/Refrigerator/Images/218110_0_pxwbma.png/mxw_1440,f_auto",
-                    title: "700 Litres Frost Free Side by Side Refrigerator with SpaceMax Technology (RS72R5011SL/TL, Real Stainless)",
-                    brand: "Samsung",
-                    color: "silver",
-                    type: "fridge",
-                    description: "Electronics is a branch of Physics that deals with the theory and use of devices in which the electrons travel through a vacuum, gas, or a semiconductor medium",
-                }
-                ,
-                {
-                    id: 6,
-                    productName: "Voltas Executive",
-                    Price: 37990,
-                    img: "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1666377366/Croma%20Assets/Large%20Appliances/Air%20Conditioner/Images/255834_0_n23oai.png/mxw_1440,f_auto",
-                    title: "5 in 1 Convertible 1.5 Ton 5 Star Adjustable Inverter Split AC with Anti Microbial Protection (Copper Condenser, 185V EAZQ)",
-                    brand: "Voltas ",
-                    color: "white",
-                    type: "ac",
-                    description: "Electronics is a branch of Physics that deals with the theory and use of devices in which the electrons travel through a vacuum, gas, or a semiconductor medium",
+                    type: "laptop"
                 }
             ]
         }
     ]
-    const{search}=useLocation()
-    const[product,SetProduct]=useState(null)
+    // data
+const [product,SetProduct]= useState(data)
+const [query,SetQuery]=useState(null)
+
+const {search}=useLocation()
+let params=undefined
 useEffect(()=>{
-    let prams= new URLSearchParams(search)
-    let a = data[prams.get('q')].find((val)=> val.id == prams.get('id') )
-    SetProduct(a)
-})
+    params= new URLSearchParams(search)
+    SetQuery(params.get("q"))
+    items(params.get("q"))
+    
+},[])
 
-const dispatch = useDispatch()
-
-
-    return(
-        <>
-        <Title/>
-        <div className="single-img">
-        <div>
-            <img src={Boolean(product) && product.img} height= "600"/>
-        </div>
-        <div>
-            <h1>{Boolean(product) && product.productName}</h1>
-            <p>{Boolean(product) && product.title}
-            </p>
-            <h3>${Boolean(product) && product.Price}.00 </h3>
-            <div className="single-but">
-                <button className="btn btn-primary" onClick={()=>dispatch(Addtocart(product))}>Add to cart</button>
-                <button className="btn btn-warning">Buy Now</button>
-            </div>
-        </div>
-        </div>
-        <Footer/>
-        </>
-    )
+let items = (value)=>{
+SetProduct(data[value])
 }
 
-export default Singleitem
+
+const [name, setName] = useState({
+    brand_1: "",
+    brand_2: "",
+    brand_3: ""
+  })
+  const [color, setColor] = useState({
+    clr_1: "",
+    clr_2: "",
+    clr_3: ""
+  })
+  const [price,setPrice] = useState({
+    price_1:1000,
+    price_2:2000,
+    price_3:3000,
+  })
+  useEffect(() => {
+    if (query === "mens") {
+      setName({
+        brand_1: "dennis",
+        brand_2: "allen solly",
+        brand_3: "indoprimo"
+      })
+      setColor({
+        clr_1: "white",
+        clr_2: "blue",
+        clr_3: "grey"
+      })
+    }
+    else if (query === "womens") {
+      setName({
+        brand_1: "ZARA",
+        brand_2: "ONLY",
+        brand_3: "BIBA"
+      })
+      setColor({
+        clr_1: "white",
+        clr_2: "blue",
+        clr_3: "yellow"
+      })
+    }
+    else if (query === "kids") {
+      setName({
+        brand_1: "Max",
+        brand_2: "Lilliput",
+        brand_3: "Babyhug"
+      })
+      setColor({
+        clr_1: "white",
+        clr_2: "blue",
+        clr_3: "black"
+      })
+    }
+    else if (query === "electronics") {
+      setName({
+        brand_1: "iphone",
+        brand_2: "samsung",
+        brand_3: "asus"
+      })
+      setColor({
+        clr_1: "silver",
+        clr_2: "blue",
+        clr_3: "black"
+      })
+    }
+    setPrice({
+      price_1:10000,
+    price_2:50000,
+    price_3:100000,
+    })
+  }, [query])
+
+function Brand(e){
+const brand = data[query].filter((val)=>{
+    if(e.target.checked){
+        return val.brand === e.target.value;
+    }
+    else{
+     return val
+    }
+})
+
+SetProduct(brand)
+
+}
+function Color(e){
+    const color = data[query].filter((val)=>{
+        if(e.target.checked){
+            return val.color === e.target.value;
+        }
+        else{
+         return val
+        }
+        
+})
+SetProduct(color)
+}
+function Price(e){
+    const price = data[query].filter((val)=>{
+        if(e.target.checked){
+            if(val.price<e.target.value){
+return val
+            }
+        }
+        else{
+         return val
+        }
+})
+SetProduct(price)
+}
+
+    
+
+
+
+  return (
+    <>
+     <Title/>
+     <div className='main-card-sep'>
+     <div className='filter'>
+        <h1>Filter</h1>
+        <h3>BRAND</h3>
+        <input type="checkbox" value={name.brand_1} onChange={Brand}/> {name.brand_1}
+        <br></br>
+        <input type="checkbox" value={name.brand_2} onChange={Brand}/> {name.brand_2}
+        <br></br>
+        <input type="checkbox" value={name.brand_3} onChange={Brand}/> {name.brand_3}
+        <br></br>
+        <h3>COLOR</h3>
+        <input type="checkbox" value={color.clr_1} onChange={Color}/> {color.clr_1}
+        <br></br>
+        <input type="checkbox" value={color.clr_2} onChange={Color}/> {color.clr_2}
+        <br></br>
+        <input type="checkbox" value={color.clr_3} onChange={Color}/> {color.clr_3}
+        <br></br>
+        <h3>Price</h3>
+        <input type="checkbox" value={price.price_1} onChange={Price}/> {price.price_1}
+        <br></br>
+        <input type="checkbox" value={price.price_2} onChange={Price}/> {price.price_2}
+        <br></br>
+        <input type="checkbox" value={price.price_3} onChange={Price}/> {price.price_3}
+        <br></br>
+     </div>
+
+     <div className='card-sep'>
+    {
+Boolean(query) && product.map((val)=>{
+
+return (
+<Card style={{ width: '18rem' }}>
+      <Card.Img variant="top" src={val.img} />
+      <Card.Body>
+        <Card.Title>{val.title}</Card.Title>
+        <Card.Text>
+          {val.Price}
+        </Card.Text>
+        
+        
+        <Button variant="primary"><Link to={`/Singleitem?q=${query}&id=${val.id}`} >view product</Link></Button>
+      </Card.Body>
+    </Card>
+)
+
+})
+    }
+   </div>
+   </div>
+   <Footer/>
+    </>
+  );
+}
+
+export default BasicExample;

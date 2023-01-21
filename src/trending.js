@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import Title from "./hometitle";
-import './singleproduct.css'
-import { Addtocart } from "../addtocartlogics";
-import { useDispatch } from "react-redux";
-import Footer from "../footer";
-
-
-function Singleitem(){
-    
+import React from "react";
+import { useEffect, useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import { Link, useLocation } from 'react-router-dom';
+import './trending.css'
+function Trending()
+{
     const [data, setData] = [
         {
             mens: [
@@ -708,7 +705,7 @@ function Singleitem(){
             ]
             ,
             trendingProduct: [
-                
+
                 {
                     id: 1,
                     productName: "Fan",
@@ -783,38 +780,32 @@ function Singleitem(){
             ]
         }
     ]
-    const{search}=useLocation()
-    const[product,SetProduct]=useState(null)
-useEffect(()=>{
-    let prams= new URLSearchParams(search)
-    let a = data[prams.get('q')].find((val)=> val.id == prams.get('id') )
-    SetProduct(a)
-})
-
-const dispatch = useDispatch()
-
-
     return(
         <>
-        <Title/>
-        <div className="single-img">
-        <div>
-            <img src={Boolean(product) && product.img} height= "600"/>
+        <h1 className="heading">Trending products</h1>
+        <div className="trending-sep">
+            
+        {
+            data.trendingProduct.map((val)=>{
+return(
+    <Card style={{ width: '18rem' }}>
+      <Card.Img variant="top" src={val.img} />
+      <Card.Body>
+        <Card.Title>{val.title}</Card.Title>
+        <Card.Text>
+          {val.Price}
+        </Card.Text>
+        
+        
+        <Button variant="primary" className="trending-btn"><Link to={`/Singleitem?q=trendingProduct&id=${val.id}`} >view product</Link></Button>
+      </Card.Body>
+    </Card>
+)
+            })
+        }
         </div>
-        <div>
-            <h1>{Boolean(product) && product.productName}</h1>
-            <p>{Boolean(product) && product.title}
-            </p>
-            <h3>${Boolean(product) && product.Price}.00 </h3>
-            <div className="single-but">
-                <button className="btn btn-primary" onClick={()=>dispatch(Addtocart(product))}>Add to cart</button>
-                <button className="btn btn-warning">Buy Now</button>
-            </div>
-        </div>
-        </div>
-        <Footer/>
         </>
     )
 }
 
-export default Singleitem
+export default Trending
