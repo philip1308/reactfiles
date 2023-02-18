@@ -5,6 +5,7 @@ import './singleproduct.css'
 import { Addtocart } from "../addtocartlogics";
 import { useDispatch } from "react-redux";
 import Footer from "../footer";
+import StaticExample from "../succesModal";
 
 
 function Singleitem(){
@@ -806,9 +807,10 @@ const dispatch = useDispatch()
             <p>{Boolean(product) && product.title}
             </p>
             <h3>${Boolean(product) && product.Price}.00 </h3>
+            <p>{Boolean(product) && product.description}</p>
             <div className="single-but">
                 <button className="btn btn-primary" onClick={()=>dispatch(Addtocart(product))}>Add to cart</button>
-                <button className="btn btn-warning">Buy Now</button>
+                <StaticExample/>
             </div>
         </div>
         </div>

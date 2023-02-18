@@ -33,7 +33,7 @@ function login()
 {
     if(value.length !== 0)
     {
-        if(value.email == user.email)
+        if(value.email == user.email && value.password == user.password)
         {
             setError("")
            history.push("/home")

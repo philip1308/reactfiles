@@ -1,13 +1,14 @@
 import React from "react";
 import Title from "./hometitle";
 import { totalitems } from "../addtocartlogics";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
+import { removeFromCart } from "../addtocartlogics";
 import './cart.css'
 import Footer from "../footer";
 function Cart() {
 
     const items = useSelector(totalitems)
-    console.log(items);
+    const dispatch = useDispatch()
     return (
         <>
             <Title />
@@ -20,7 +21,7 @@ function Cart() {
                                 <h1>${val.productprice}.00</h1>
                                 <h1>{val.productname}</h1>
                             </div>
-
+<button onClick={()=>dispatch(removeFromCart(val.img))} className="btn btn-danger">remove</button>
                         </div>
                     )
                 })

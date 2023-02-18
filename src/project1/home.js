@@ -6,13 +6,16 @@ import UncontrolledExample from "./curosil";
 import Slidechange from "./curosil";
 import Title from "./hometitle";
 import Products from "./product";
+import { userValue } from "./homeSearchLogics";
+import { useSelector } from "react-redux";
 function Home(){
 
+    const value = useSelector(userValue)
+console.log(value);
     return(
-
         <>
         <Title/> 
-        <UncontrolledExample/> 
+        <UncontrolledExample /> 
         <Products/>
         <Trending/>
         <Footer/>

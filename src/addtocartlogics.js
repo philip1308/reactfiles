@@ -19,11 +19,15 @@ export const cartslice=createSlice({
              }]
          }
         }
+        ,
+        removeFromCart:(state,action)=>{
+            state.item = state.item.filter(val => val.img != action.payload) 
+        }
     }
 
 })
 
-export const {Addtocart}=cartslice.actions
+export const {Addtocart,removeFromCart}=cartslice.actions
 export const totalitems=(state)=>state.cart.item
 export const search=(state)=>state.cart.Filter
 export default cartslice.reducer

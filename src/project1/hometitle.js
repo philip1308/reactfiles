@@ -10,14 +10,43 @@ import { useEffect } from 'react';
 import Profile from "./profile";
 import './hometitle.css'
 import { totalitems,search} from "../addtocartlogics";
-import { useSelector } from "react-redux";
-
+import { useSelector,useDispatch } from "react-redux";
+import { gettingValue } from "./homeSearchLogics";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 function Title(){
 const item = useSelector(totalitems)
+
 const filter = useSelector(search)
+
+const dispatch = useDispatch()
 
 function Magnifyer(e){
 filter = e.target.value
+}
+const history = useHistory()
+
+function routing(typed)
+{
+    if(typed == "mens")
+{
+  history.push("/items?q=mens")
+  typed = ""
+}
+else if(typed == "womens")
+{
+  history.push("/items?q=womens")
+  typed = ""
+}
+else if(typed == "kids")
+{
+  history.push("/items?q=kids")
+  typed = ""
+}
+else if(typed == "electronics")
+{
+  history.push("/items?q=electronics")
+  typed = ""
+}
 }
     return(
         <>
@@ -33,7 +62,7 @@ filter = e.target.value
                         placeholder="Search"
                         className="me-2"
                         aria-label="Search"
-                        onChange={Magnifyer}
+                        onChange={(e)=>{routing(e.target.value)}}
                     />
                     {/* <Button variant="outline-primary text-white">Search</Button> */}
                 </Form>
